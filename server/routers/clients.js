@@ -31,7 +31,6 @@ const { submit, checkRegPermit } = require('../middlewares/submitFile')
 const {
   caRegValidate,
   parRegValidate,
-  emailValidate,
   passwordValidate,
   caPermitValidate,
 } = require('../middlewares/clientValidate')
@@ -47,7 +46,6 @@ router.get('/view/:username', profileView)
 router.post(
   '/reg/par',
   upload.single('participants'),
-  emailValidate,
   parRegValidate,
   registration
 )
@@ -57,7 +55,6 @@ router.post(
   '/reg/ca',
   caPermitValidate,
   upload.single('CA'),
-  emailValidate,
   caRegValidate,
   registration
 )

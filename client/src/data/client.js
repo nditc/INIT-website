@@ -108,7 +108,7 @@ export const classesOption = [
   { name: '10', value: '10' },
   { name: '11', value: '11' },
   { name: '12', value: '12' },
-  { name: 'HSC-22', value: 'HSC-22' },
+  { name: 'HSC-23', value: 'HSC-23' },
   { name: 'Polytechnic 1st year', value: 'Polytechnic1st' },
   { name: 'Polytechnic 2nd year', value: 'Polytechnic2nd' },
   { name: 'University', value: 'university' },
