@@ -50,7 +50,8 @@ export const navigationLinks = [
     footer: true,
   },
   { title: 'FAQ', link: 'faq', sub: false, footer: true },
-  { title: 'Gallery', link: 'gallery', sub: false },
+  { title: 'Gallery', link: 'gallery', sub: false, footer: true  },
+  { title: 'FTMPC', link: 'https://ftmpc.nditc.net', sub: false }
 ]
 
 export const socialIcons = [

@@ -4,7 +4,7 @@
     "image": "/Images/developers/Khalid.jpg",
     "role": "Full Stack build (1st version)",
     "clgRoll": "12207055",
-    "position": "President, Department of Web and App development",
+    "position": "Ex-President, Department of Web and App development",
     "socialLinks": [
       {
         "title": "Facebook",
@@ -17,5 +17,102 @@
         "link": "https://khalidahammed.com"
       }
     ]
-  }
+  },
+  
+  {
+  "name": "Ahammad Shawki",
+  "image": "/Images/developers/shawki.jpg",
+  "role": "Full Stack build (2nd version)",
+  "clgRoll": "12305042",
+  "position": "President, Department of Web and App development",
+  "socialLinks": [
+    {
+      "title": "Facebook",
+      "icon": "facebook",
+      "link": "https://www.facebook.com/ahammadshawki8"
+    },
+    {
+      "title": "website",
+      "icon": "website",
+      "link": "https://ahammadshawki8.github.io"
+    }
+  ]
+},
+
+{
+  "name": "Nafe Ibne Delower",
+  "image": "/Images/developers/Nafe.png",
+  "role": "WEB Developer",
+  "clgRoll": "12406106",
+  "position": "Organizer",
+  "socialLinks": [
+    {
+      "title": "Facebook",
+      "icon": "facebook",
+      "link": "https://www.facebook.com/kt.prodhan"
+    },
+    {
+      "title": "website",
+      "icon": "website",
+      "link": "https://portfolio-of-nafe.web.app"
+    }
+  ]
+},
+
+{
+  "name": "HRM Rafsan Amin",
+  "image": "/Images/developers/hrm_rafsan.jpg",
+  "role": "Full Stack WEB Developer",
+  "clgRoll": "12505033",
+  "position": "Member",
+  "socialLinks": [
+    {
+      "title": "Facebook",
+      "icon": "facebook",
+      "link": "https://www.facebook.com/profile.php?id=100082305411559"
+    },
+    {
+      "title": "website",
+      "icon": "website",
+      "link": "https://rafsanamin.epizy.com"
+    }
+  ]
+},
+
+{
+  "name": "Wasef Rahman Swapnil",
+  "image": "/Images/developers/swapnil.png",
+  "role": "Full Stack WEB Developer",
+  "clgRoll": "12508025",
+  "position": "Member",
+  "socialLinks": [
+    {
+      "title": "Facebook",
+      "icon": "facebook",
+      "link": "https://www.facebook.com/profile.php?id=100083625623282"
+    },
+    {
+      "title": "website",
+      "icon": "website",
+      "link": "https://xenostudios.vercel.app"
+    }
+  ]
+},
+
+{
+  "name": "Muksifur Rahman",
+  "image": "/Images/developers/muksif.jpg",
+  "role": "Content Writer",
+  "clgRoll": "12505096",
+  "position": "Member",
+  "socialLinks": [
+    {
+      "title": "Facebook",
+      "icon": "facebook",
+      "link": "https://www.facebook.com/muksifur"
+    },
+    { "title": "website", "icon": "website", "link": "https://muksifur.com" }
+  ]
+}
 ]
+

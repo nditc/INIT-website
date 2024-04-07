@@ -140,6 +140,20 @@ const Registration = () => {
               </Typography>
 
               <StyledUL>
+              <li>
+                  If you want to participate in Father Timm Memorial Programming Contest 4.0 (FTMPC), then
+                  please visit this link instead:{' '}
+                  <StyledLink
+                    href="https://ftmpc.nditc.net"
+                    target='_blank'
+                    style={{
+                      textDecoration: 'underline',
+                      letterSpacing: '1px',
+                    }}
+                  >
+                    https://ftmpc.nditc.net
+                  </StyledLink>
+                </li>
                 <li>
                   We recommend you watch this tutorial video before you fill up
                   this form:{' '}
