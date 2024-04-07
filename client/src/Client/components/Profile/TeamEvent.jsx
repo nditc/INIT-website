@@ -1,10 +1,10 @@
-import { Box, Link, Stack, Typography } from '@mui/material'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import reqs from '../../../data/requests'
-import GroupsIcon from '@mui/icons-material/Groups'
-import styled from '@emotion/styled'
-import { objToArray } from '../../../Utils/objToArray'
+import { Box, Link, Stack, Typography } from '@mui/material';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import reqs from '../../../data/requests';
+import GroupsIcon from '@mui/icons-material/Groups';
+import styled from '@emotion/styled';
+import { objToArray } from '../../../Utils/objToArray';
 
 const StyledList = styled('ul')(({ theme }) => ({
   width: '100%',
@@ -20,10 +20,10 @@ const StyledList = styled('ul')(({ theme }) => ({
     color: theme.palette.info.main,
     fontWeight: 'bolder',
   },
-}))
+}));
 
-const TeamEvent = ({ team, userName, fullName }) => {
-  const [eventInfo, setEventInfo] = useState({})
+const TeamEvent = ({ team, userName, fullName, userEmail }) => {
+  const [eventInfo, setEventInfo] = useState({});
 
   useEffect(() => {
     if (!eventInfo.name) {
@@ -33,16 +33,20 @@ const TeamEvent = ({ team, userName, fullName }) => {
         })
         .then((res) => {
           if (res.data.succeed) {
-            const teamInfo = res.data.result
-            setEventInfo({ ...teamInfo, members: JSON.parse(teamInfo.members) })
+            const teamInfo = res.data.result;
+            setEventInfo({
+              ...teamInfo,
+              members: [
+                { fullName: teamInfo.leader, email: userEmail, value: 1 },
+                ...JSON.parse(teamInfo.members),
+              ],
+            });
           }
-        })
+        });
     }
-  }, [eventInfo])
+  }, [eventInfo]);
 
-  const { name, leader, event, members } = eventInfo
-  let membersNames = objToArray(members)
-  membersNames.unshift({ name: leader, value: 1 })
+  let { name, leader, event, members = [] } = eventInfo;
 
   return (
     <Box
@@ -79,36 +83,31 @@ const TeamEvent = ({ team, userName, fullName }) => {
       </Stack>
       <Stack p={2}>
         <StyledList>
-          {membersNames.map((member, key) => {
+          {members.map((member, key) => {
             return (
               <li key={key}>
-                <Link
+                <Typography
+                  component={'p'}
                   sx={{
                     textDecoration: 'none',
                     fontFamily: `'Roboto', sans-serif`,
                     fontSize: '.9rem',
                     color:
-                      member.name === userName
+                      member.email === userEmail
                         ? 'success.main'
                         : 'primary.main',
-                    fontWeight: member.name === userName ? '500' : 'initial',
+                    fontWeight: member.email === userEmail ? '500' : 'initial',
                     transition: '.3s ease all',
                     '&:hover': {
                       color:
-                        member.name === userName
+                        member.email === userEmail
                           ? 'success.main'
                           : 'darkBlue.main',
                     },
                   }}
-                  target='_blank'
-                  href={
-                    member.name === userName
-                      ? null
-                      : `/profile/view/${member.name}`
-                  }
                 >
-                  {member.name === userName ? fullName : member.name}
-                  {member.name === leader && (
+                  {member.email === userEmail ? fullName : member.fullName}
+                  {member.fullName === leader && (
                     <Typography
                       component={'span'}
                       fontSize={'.8rem'}
@@ -118,14 +117,14 @@ const TeamEvent = ({ team, userName, fullName }) => {
                       &nbsp;&nbsp;- leader
                     </Typography>
                   )}
-                </Link>
+                </Typography>
               </li>
-            )
+            );
           })}
         </StyledList>
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
-export default TeamEvent
+export default TeamEvent;

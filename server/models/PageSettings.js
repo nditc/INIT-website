@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 1,
     },
-  })
+  });
 
-  return PageSettings
-}
+  return PageSettings;
+};

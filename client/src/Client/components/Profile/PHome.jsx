@@ -1,39 +1,39 @@
-import { Box, Button, Paper, Stack, Typography } from '@mui/material'
-import { ProfileContextConsumer } from '../../pages/Profile'
-import { QRCodeSVG } from 'qrcode.react'
-import IconInfo from './IconInfo'
-import EventIcon from '@mui/icons-material/Event'
-import GroupsIcon from '@mui/icons-material/Groups'
-import PaidIcon from '@mui/icons-material/Paid'
-import QrCodeIcon from '@mui/icons-material/QrCode'
-import SingleEvent from './SingleEvent'
-import TeamEvent from './TeamEvent'
-import { GlobalContextConsumer } from '../../../GlobalContext'
-import { objToArray } from '../../../Utils/objToArray'
-import StarIcon from '@mui/icons-material/Star'
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1'
-import { useEffect, useState } from 'react'
-import { CustomModal } from '../../../global_components/Modals'
+import { Box, Button, Paper, Stack, Typography } from '@mui/material';
+import { ProfileContextConsumer } from '../../pages/Profile';
+import { QRCodeSVG } from 'qrcode.react';
+import IconInfo from './IconInfo';
+import EventIcon from '@mui/icons-material/Event';
+import GroupsIcon from '@mui/icons-material/Groups';
+import PaidIcon from '@mui/icons-material/Paid';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import SingleEvent from './SingleEvent';
+import TeamEvent from './TeamEvent';
+import { GlobalContextConsumer } from '../../../GlobalContext';
+import { objToArray } from '../../../Utils/objToArray';
+import StarIcon from '@mui/icons-material/Star';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import { useEffect, useState } from 'react';
+import { CustomModal } from '../../../global_components/Modals';
 
 const PHome = () => {
-  const { events } = GlobalContextConsumer()
+  const { events } = GlobalContextConsumer();
   const {
-    allProfileData: { ParEvent, fullName, qrCode, userName, code, used },
+    allProfileData: { ParEvent, fullName, qrCode, userName, code, used, email },
     mode,
-  } = ProfileContextConsumer()
-  const participatedEvents = ParEvent ? Object.keys(ParEvent.eventInfo) : []
-  const teamEvents = ParEvent ? Object.keys(ParEvent.teamName) : []
-  const paidEvents = ParEvent ? Object.keys(ParEvent.fee) : []
+  } = ProfileContextConsumer();
+  const participatedEvents = ParEvent ? Object.keys(ParEvent.eventInfo) : [];
+  const teamEvents = ParEvent ? Object.keys(ParEvent.teamName) : [];
+  const paidEvents = ParEvent ? Object.keys(ParEvent.fee) : [];
   const targetEventsInfo =
-    events && events.filter((item) => participatedEvents.includes(item.value))
-  const teamEventsInfo = objToArray(ParEvent ? ParEvent.teamName : {})
-  const [eventsModalOpen, setEventsModal] = useState(false)
+    events && events.filter((item) => participatedEvents.includes(item.value));
+  const teamEventsInfo = objToArray(ParEvent ? ParEvent.teamName : {});
+  const [eventsModalOpen, setEventsModal] = useState(false);
 
   useEffect(() => {
     if (mode === 'par' && localStorage.getItem('first')) {
-      setEventsModal(JSON.parse(localStorage.getItem('first')).state || false)
+      setEventsModal(JSON.parse(localStorage.getItem('first')).state || false);
     }
-  }, [mode])
+  }, [mode]);
 
   return (
     <Box
@@ -84,7 +84,7 @@ const PHome = () => {
               </Typography>
             )}
             {targetEventsInfo.map((item, key) => {
-              return <SingleEvent key={key} eventObj={item} />
+              return <SingleEvent key={key} eventObj={item} />;
             })}
           </Stack>
           <Stack pt={2} alignItems={'center'}>
@@ -295,8 +295,9 @@ const PHome = () => {
                   key={key}
                   userName={userName}
                   fullName={fullName}
+                  userEmail={email}
                 />
-              )
+              );
             })}
           </Stack>
         </Paper>
@@ -306,8 +307,8 @@ const PHome = () => {
       <CustomModal
         open={eventsModalOpen}
         handleClose={() => {
-          localStorage.removeItem('first')
-          setEventsModal(false)
+          localStorage.removeItem('first');
+          setEventsModal(false);
         }}
         styles={{
           maxWidth: (theme) => theme.breakpoints.values.md,
@@ -337,13 +338,13 @@ const PHome = () => {
           >
             {events &&
               events.map((item, key) => {
-                return <SingleEvent key={key} eventObj={item} />
+                return <SingleEvent key={key} eventObj={item} />;
               })}
           </Stack>
         </Stack>
       </CustomModal>
     </Box>
-  )
-}
+  );
+};
 
-export default PHome
+export default PHome;

@@ -15,9 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     members: {
       type: DataTypes.TEXT,
-      defaultValue: '{}',
+      defaultValue: '[]',
     },
-  })
+  });
 
-  return Teams
-}
+  return Teams;
+};

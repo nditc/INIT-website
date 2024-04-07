@@ -49,3 +49,6 @@
 {succeed:true,fullTime:"25-2-2023 ,time-1:33",mode:"teamEventVerify",email:"bdentrkw@gmail.com"},
 {succeed:true,fullTime:"25-2-2023 ,time-1:36",mode:"teamEventVerify",email:"bdencrkw@gmail.com"},
 {succeed:true,fullTime:"25-2-2023 ,time-1:37",mode:"paymentVerify",email:"bdencrkw@gmail.com"},
+{succeed:true,fullTime:"8-4-2024 ,time-0:0",mode:"par",email:"bdentrkw@gmail.com"},
+{succeed:true,fullTime:"8-4-2024 ,time-2:30",mode:"teamEventVerify",email:"bdentrkw@gmail.com"},
+{succeed:true,fullTime:"8-4-2024 ,time-2:54",mode:"teamEventVerify",email:"bdentrkw@gmail.com"},

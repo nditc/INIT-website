@@ -1,10 +1,10 @@
-const so = 'https://eventapi.nditc.net'
-
+// const so = 'https://eventapi.nditc.net'
+const so = 'http://localhost:8001';
 
 export const reqImgWrapper = (src) => {
-  if (!src) return null
-  return so + '/' + src
-}
+  if (!src) return null;
+  return so + '/' + src;
+};
 
 const reqs = {
   GET_ALL_ADMINS: so + '/api/admin/',
@@ -117,6 +117,6 @@ const reqs = {
 
   //profile view
   PROFILE_VIEW: so + '/api/client/view/',
-}
+};
 
-export default reqs
+export default reqs;

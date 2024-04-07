@@ -1,18 +1,18 @@
-import { Box, Button, Stack, Typography } from '@mui/material'
-import { useState, useEffect, useRef, Fragment } from 'react'
-import SendIcon from '@mui/icons-material/Send'
-import CheckBox from '../Forms/CheckBox'
-import { CustomInField } from '../../../global_components/CustomFormControls'
-import { useForm } from '../../../custom_hooks/useForm'
-import SubmissionInputs from './SubmissionInputs'
-import PaymentInputs from './PaymentInputs'
-import reqs from '../../../data/requests'
-import { checkFiles } from './CheckFiles'
-import { submitFilesAndLinks } from './submitFilesLinks'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { ClientContextConsumer } from '../../pages/Client'
-import { StyledLink } from '../../../customStyles/StyledLinks'
+import { Box, Button, Stack, Typography } from '@mui/material';
+import { useState, useEffect, useRef, Fragment } from 'react';
+import SendIcon from '@mui/icons-material/Send';
+import CheckBox from '../Forms/CheckBox';
+import { CustomInField } from '../../../global_components/CustomFormControls';
+import { useForm } from '../../../custom_hooks/useForm';
+import SubmissionInputs from './SubmissionInputs';
+import PaymentInputs from './PaymentInputs';
+import reqs from '../../../data/requests';
+import { checkFiles } from './CheckFiles';
+import { submitFilesAndLinks } from './submitFilesLinks';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { ClientContextConsumer } from '../../pages/Client';
+import { StyledLink } from '../../../customStyles/StyledLinks';
 
 const TeamForm = ({
   setAlertModal,
@@ -23,55 +23,55 @@ const TeamForm = ({
   setAlertModalToDef,
   userName,
 }) => {
-  const navigate = useNavigate()
-  const { triggerAv, setTriggerAv } = ClientContextConsumer()
+  const navigate = useNavigate();
+  const { triggerAv, setTriggerAv } = ClientContextConsumer();
   const { fee, maxMember, paid, type, value, submission, name, roll, t_shirt } =
-    targetEvent
+    targetEvent;
   const { values, setValues, handleInputChange } = useForm({
     CteamName: '',
     CtransactionId: '',
     transactionNum: '',
     roll_no: '',
-  })
+  });
   const [errors, setErrors] = useState({
     CteamName: '',
     CtransactionId: '',
     transactionNum: '',
-  })
-  const [submitObjArr, setSubmitObjArr] = useState([])
-  const [reCheck, setReCheck] = useState(false)
-  const [submissionArr, setSubmissionArr] = useState([])
-  const memberContainerRef = useRef()
+  });
+  const [submitObjArr, setSubmitObjArr] = useState([]);
+  const [reCheck, setReCheck] = useState(false);
+  const [submissionArr, setSubmissionArr] = useState([]);
+  const memberContainerRef = useRef();
 
   useEffect(() => {
     if (submission) {
       if (submission.name) {
         let submitNames = submission.name.split(',').filter((item) => {
-          if (item) return item
-        })
-        setSubmissionArr(submitNames)
-        let sizeArray = []
+          if (item) return item;
+        });
+        setSubmissionArr(submitNames);
+        let sizeArray = [];
         if (submission.size) {
           sizeArray = submission.size.split(',').filter((size) => {
-            if (size) return size
-          })
+            if (size) return size;
+          });
         }
         setSubmitObjArr(
           submitNames.map((item, i) => {
             if (submission.type === 'link')
-              return { eventValue: value, link: '', name: item }
+              return { eventValue: value, link: '', name: item };
             else
               return {
                 eventValue: value,
                 file: {},
                 name: item,
                 size: sizeArray[i] || '',
-              }
+              };
           })
-        )
+        );
       }
     }
-  }, [submission])
+  }, [submission]);
 
   const msgToModal = (msg) => {
     setAlertModal({
@@ -79,32 +79,34 @@ const TeamForm = ({
       msg: msg,
       severity: 'error',
       handleClose: () => setAlertModalToDef(),
-    })
-  }
+    });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setLoading({
-      state: true,
-      msg: 'We are checking your informations. Please wait...',
-    })
-    msgToModal('', 'warning')
-    const mContainer = memberContainerRef.current
-    let members = []
-    mContainer.querySelectorAll('.member').forEach((member) => {
-      if (member.value) {
-        members.push(member.value)
+    e.preventDefault();
+    // setLoading({
+    //   state: true,
+    //   msg: 'We are checking your informations. Please wait...',
+    // });
+    // msgToModal('', 'warning');
+    const mContainer = memberContainerRef.current;
+    let members = [];
+    mContainer.querySelectorAll('.member-container').forEach((container) => {
+      const memberFullname = container.querySelector('.member-fullname').value;
+      const email = container.querySelector('.member-email').value;
+      if (memberFullname || email) {
+        members.push({ fullName: memberFullname, email });
       }
-    })
+    });
 
-    let verified = true
+    let verified = true;
 
     if (submission) {
       if (submission.type === 'file') {
-        const statusMsg = checkFiles(submitObjArr)
+        const statusMsg = checkFiles(submitObjArr);
         if (statusMsg !== 'ok') {
-          verified = false
-          msgToModal(statusMsg)
+          verified = false;
+          msgToModal(statusMsg);
         }
       }
     }
@@ -119,14 +121,14 @@ const TeamForm = ({
                 severity: 'warning',
                 msg: res.msg,
                 handleClose: () => {
-                  setAlertModalToDef()
-                  navigate(`/profile/${userName}`, { replace: true })
+                  setAlertModalToDef();
+                  navigate(`/profile/${userName}`, { replace: true });
                 },
-              })
-            } else msgToModal(res.msg)
-            setLoading({ state: false, msg: '' })
+              });
+            } else msgToModal(res.msg);
+            setLoading({ state: false, msg: '' });
           } else {
-            setLoading({ state: true, msg: 'Submitting...' })
+            setLoading({ state: true, msg: 'Submitting...' });
             return axios
               .post(
                 reqs.TEAM_EVENT_PARTICIPATION,
@@ -141,33 +143,33 @@ const TeamForm = ({
                 { withCredentials: true }
               )
               .then((response) => {
-                setLoading({ state: false, msg: '' })
+                setLoading({ state: false, msg: '' });
                 if (response.data.succeed) {
                   setAlertModal({
                     state: true,
                     msg: `${response.data.msg}. You can also check the status in your profile`,
                     severity: 'success',
                     handleClose: () => {
-                      setAlertModalToDef()
-                      navigate(`/event/${value}`)
+                      setAlertModalToDef();
+                      navigate(`/event/${value}`);
                     },
-                  })
-                  setTriggerAv(!triggerAv)
+                  });
+                  setTriggerAv(!triggerAv);
                 } else {
-                  msgToModal(response.data.msg)
+                  msgToModal(response.data.msg);
                 }
-              })
+              });
           }
         })
         .catch((err) => {
-          setLoading({ state: false, msg: '' })
-          msgToModal(err.response.data.msg || 'Something wrong happened')
-        })
+          setLoading({ state: false, msg: '' });
+          msgToModal(err.response.data.msg || 'Something wrong happened');
+        });
     } else {
-      msgToModal('Error verifying your data', 'error')
-      setLoading({ state: false, msg: '' })
+      msgToModal('Error verifying your data', 'error');
+      setLoading({ state: false, msg: '' });
     }
-  }
+  };
 
   return (
     <>
@@ -242,18 +244,35 @@ const TeamForm = ({
               { length: maxMember - 1 ? maxMember - 1 : 0 },
               (v, i) => {
                 return (
-                  <CustomInField
+                  <Box
                     key={i}
-                    label={`Member ${i + 1} (email address)`}
-                    name={`Member${i + 1}`}
-                    className={'member'}
-                    placeholder={`member${i + 1}@gmail.com`}
-                    errType={'none'}
-                    msg={'used to register'}
-                    required={false}
-                    focused={true}
-                  />
-                )
+                    sx={{
+                      display: 'grid',
+                      gap: '10px',
+                    }}
+                    className={`member-container`}
+                  >
+                    <CustomInField
+                      label={`Member ${i + 1} (fullname)`}
+                      name={`Member${i + 1}`}
+                      className={`member member-fullname`}
+                      placeholder={`member${i + 1} fullname`}
+                      errType={'none'}
+                      required={false}
+                      focused={true}
+                    />
+                    <CustomInField
+                      label={`Member ${i + 1} (email address)`}
+                      name={`Member${i + 1}`}
+                      className={`member member-email`}
+                      placeholder={`member${i + 1}@gmail.com`}
+                      errType={'none'}
+                      required={false}
+                      focused={true}
+                      type={'email'}
+                    />
+                  </Box>
+                );
               }
             )}
 
@@ -328,7 +347,7 @@ const TeamForm = ({
         </Stack>
       </form>
     </>
-  )
-}
+  );
+};
 
-export default TeamForm
+export default TeamForm;
