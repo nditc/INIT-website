@@ -217,27 +217,27 @@ const teamParticipation = async (req, res) => {
   ParEvents.update(updatedData, { where: { parId: id } });
 
   //setting the members events
-  const setToPerMembers = async () => {
-    membersIds.forEach(async (member) => {
-      const targetParEvent = await ParEvents.findOne({
-        where: { parId: member.id },
-      });
+  // const setToPerMembers = async () => {
+  //   membersIds.forEach(async (member) => {
+  //     const targetParEvent = await ParEvents.findOne({
+  //       where: { parId: member.id },
+  //     });
 
-      let { eventInfo, teamName } = targetParEvent;
-      eventInfo = JSON.parse(eventInfo);
-      teamName = JSON.parse(teamName);
+  //     let { eventInfo, teamName } = targetParEvent;
+  //     eventInfo = JSON.parse(eventInfo);
+  //     teamName = JSON.parse(teamName);
 
-      eventInfo[`${eventName}`] = 0;
-      teamName[`${eventName}`] = CteamName;
-      await ParEvents.update(
-        {
-          eventInfo: JSON.stringify(eventInfo),
-          teamName: JSON.stringify(teamName),
-        },
-        { where: { parId: member.id } }
-      );
-    });
-  };
+  //     eventInfo[`${eventName}`] = 0;
+  //     teamName[`${eventName}`] = CteamName;
+  //     await ParEvents.update(
+  //       {
+  //         eventInfo: JSON.stringify(eventInfo),
+  //         teamName: JSON.stringify(teamName),
+  //       },
+  //       { where: { parId: member.id } }
+  //     );
+  //   });
+  // };
   // setToPerMembers()
   //sending the mail
 

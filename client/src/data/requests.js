@@ -1,5 +1,5 @@
-// const so = 'https://eventapi.nditc.net'
-const so = 'http://localhost:8001';
+const so = 'https://eventapi.nditc.net';
+// const so = 'http://localhost:8001';
 
 export const reqImgWrapper = (src) => {
   if (!src) return null;
