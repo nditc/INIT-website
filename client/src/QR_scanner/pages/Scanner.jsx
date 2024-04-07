@@ -453,7 +453,7 @@ const Scanner = () => {
             alignItems='center'
             mb={2}
           >
-            <a href='https://nditc.org/index.php' target='_blank'>
+            <a href='https://nditc.net/index.php' target='_blank'>
               <img src='Images/nditcT.png' alt='nditc logo' width='180px' />
             </a>
             <Typography

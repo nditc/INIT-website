@@ -83,7 +83,7 @@ const htmlCreator = (mode, data) => {
     <h3>Hey ${data.client.fullName} your payment for ${data.info.eventName} ${
       data.info.type
         ? 'is successful'
-        : 'is not proper or something wrong happened. please contact to the admin for this <br> <a href="https://init.nditc.org/contact">Contact us</a>'
+        : 'is not proper or something wrong happened. please contact to the admin for this <br> <a href="https://init.nditc.net/contact">Contact us</a>'
     }. You will also see changes in your profile in the payment section</h3>
     `
   } else if (mode === 'TIDChange') {
@@ -109,7 +109,7 @@ const htmlCreator = (mode, data) => {
             .join('')}
         </ol><br/><br/>
         <h3>let us know if it was not you: <h3>
-        <a href="https://init.nditc.org/contact">https://init.nditc.org/contact</a>
+        <a href="https://init.nditc.net/contact">https://init.nditc.net/contact</a>
     `
   } else if (mode === 'custom') {
     subject = `${data.info.subject}`

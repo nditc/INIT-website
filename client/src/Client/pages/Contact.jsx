@@ -276,10 +276,10 @@ const Contact = () => {
                     textDecoration: 'underline',
                   },
                 }}
-                href='https://nditc.org'
+                href='https://nditc.net'
                 target='_blank'
               >
-                https://nditc.org
+                https://nditc.net
               </Link>
             </ListedContact>
           </StyledInfoBox>

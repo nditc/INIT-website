@@ -192,7 +192,7 @@ const About = () => {
           )
         })}
         <Stack justifyContent={'center'} alignItems='center'>
-          <LinkedButton link={'https://nditc.org'} text='more about us' />
+          <LinkedButton link={'https://nditc.net'} text='more about us' />
         </Stack>
       </Container>
     </>

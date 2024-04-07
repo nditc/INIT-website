@@ -328,7 +328,7 @@ const Footer = () => {
               '&:hover': { textDecoration: 'underline' },
               color: 'info.main',
             }}
-            href='https://nditc.org/'
+            href='https://nditc.net/'
             target='_blank'
           >
             NDITC
